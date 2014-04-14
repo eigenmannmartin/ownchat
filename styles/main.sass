@@ -1,0 +1,105 @@
+
+@import _grid 
+@import _spinnkit
+@import _nprogress
+
+$navi_width_large: 200px
+$navi_width: 80px
+$navi_width_small: 0
+$break_small: 480px
+$break_large: 1000px
+
+
+$color_base: #FCFCFC
+$color_light: #E0E0E0
+$color_lightdark: #858C95
+$color_dark: #353C45
+$color_mark: #DF7FE1
+
+$color_font: #101010
+
+
+
+
+$box-spacing: 1em
+
+@mixin box-spacing
+	padding: $box-spacing
+
+@mixin main
+	+grid-main($navi_width)
+
+	@media screen and (max-width: 480px) 
+		+grid-main($navi_width_small)
+	
+	@media screen and (min-width: 1000px)
+		+grid-main($navi_width_large)
+
+body, html, #master
+	margin: 0
+	padding: 0
+	//min-height: 100%
+	//height: auto !important 
+	height: 100%
+
+
+.important
+	color: $color_mark
+
+.ua-grid-wrapper
+	//min-height: 100%
+	//height: auto !important 
+	height: 100%
+
+
+.ua-navi	
+	+grid-navi($navi_width)
+	+box-spacing
+
+	//min-height: 500px
+	//height: auto !important 
+	height: 100%
+	padding: 1em
+
+	//colors
+	background-color: $color_dark
+
+	@media screen and (max-width: 480px) 
+		+grid-navi($navi_width_small)
+	
+	@media screen and (min-width: 1000px) 
+		+grid-navi($navi_width_large)
+
+	h2
+		color: #FCFCFC
+
+	
+
+.ua-main
+	+box-spacing
+	+main
+
+	.ua-content
+		+box-spacing
+		float: right
+		width: 100%
+
+.ua-head
+	+box-spacing
+	background-color: $color_dark
+
+
+.nav-link
+	color: $color_light
+	border-left: 5px solid $color_lightdark
+	margin-left: -1em
+	margin-top: 3px
+	padding-left: 0.8em
+
+	&:hover
+		border-left: 5px solid $color_light
+
+
+// tweaking info-bar
+#notify
+	margin: 0
