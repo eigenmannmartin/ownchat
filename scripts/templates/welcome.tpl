@@ -15,7 +15,7 @@
                     <div class="column">
                         <div class="ui">
                             <div class="ui left icon input ">
-                              <input placeholder="Chat Server" type="text" id="ServerURL">
+                              <input placeholder="Chat Server" type="text" id="ServerURL" <% if( ServerURL ){ %> value="<%= ServerURL %>" <%} %>>
                               <i class="cloud icon"></i>
                             </div>
                         </div>

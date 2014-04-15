@@ -1,8 +1,10 @@
 define([ 
     'backbone',
+    'models/settings',
     'text!templates/welcome.tpl'
 ], function(
     Backbone,
+    Settings,
     Template
 ) {
     'use strict';
@@ -17,13 +19,13 @@ define([
 
         ok: function( event ){
             event.preventDefault();
-            console.log( $( '#ServerURL' ).val() );
+            Settings.set( {'ServerURL': $( '#ServerURL' ).val()} );
+            Settings.saveSettings();
             window.app.navigate( 'chat', {trigger: true} )
         },
 
         cancel: function( event ){
             event.preventDefault();
-            console.log("cancel")
             $( '#ServerURL' ).val('');
         },
 
@@ -39,8 +41,9 @@ define([
         },
 
         render: function(){
-            this.$el.html( template() )
-            this.$el.show();
+            this.$el.html( template({
+                ServerURL: Settings.get( "ServerURL" )
+            }) )
             return this;
         },
 

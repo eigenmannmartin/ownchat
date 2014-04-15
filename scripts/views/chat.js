@@ -1,8 +1,12 @@
 define([ 
     'backbone',
+    'models/settings',
+    'objects/api',
     'text!templates/chat.tpl'
 ], function(
     Backbone,
+    Settings,
+    Api,
     Template
 ) {
     'use strict';
@@ -24,7 +28,10 @@ define([
         },
 
         render: function(){
-            this.$el.html( template() )
+            console.log( Api.getChat( Settings.get( "ServerURL" ) ) );
+            this.$el.html( template({
+                content: Settings.get( "ServerURL" )
+            }) );
             this.$el.show();
             return this;
         },

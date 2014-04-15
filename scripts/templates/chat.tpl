@@ -12,6 +12,11 @@
                             </h2>
                         </div>
                     </div>
+                    <div class="column">
+                        <div class="ui">
+                            <div><%= content %></div>
+                         </div>
+                    </div>
                 </div>
 
 

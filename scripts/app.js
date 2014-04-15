@@ -1,11 +1,14 @@
 define([
 	'backbone',
+	'models/settings',
 
 	'views/welcome',
 	'views/chat'
 
 ], function (
 	Backbone,
+
+	Settings,
 
 	VWelcome,
 	VChat
@@ -34,6 +37,7 @@ define([
     	}
 
     	this.actualPage = page;
+    	this.actualPage.render();
     	this.actualPage.$el.show();
     	this.main.append( page.$el );
     },
@@ -41,6 +45,13 @@ define([
     start: function(){
         this.actualPage = false;
         this.main = $( 'body' );
+
+        this.models = {
+        	settings : Settings
+        }   
+
+
+        this.models.settings.loadSettings();
 
     	Backbone.history.start();
     }
