@@ -1,33 +1,41 @@
 define([
 	'backbone',
 
-	'views/welcome'
+	'views/welcome',
+	'views/chat'
 
 ], function (
 	Backbone,
 
-	PWelcome
+	VWelcome,
+	VChat
 ){
 	'use strict';
 
 	var Router = Backbone.Router.extend({
 	routes:{
-        "":"welcome"
+        "": "welcome",
+        "chat": "chat" 
     },
 
 
     welcome: function(){
-    	this.changePage( PWelcome );
+    	this.changePage( VWelcome );
+    },
+
+    chat: function(){
+		this.changePage( VChat );
     },
 
  
     changePage:function ( page ) {
     	if( this.actualPage ){
-    		this.actualPage.$el.remove;
+    		this.actualPage.$el.hide();
     	}
 
     	this.actualPage = page;
-    	this.main.html( page.$el );
+    	this.actualPage.$el.show();
+    	this.main.append( page.$el );
     },
 
     start: function(){

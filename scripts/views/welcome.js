@@ -1,9 +1,12 @@
-define([ 'backbone',
+define([ 
+    'backbone',
+    'text!templates/welcome.tpl'
 ], function(
-    Backbone
+    Backbone,
+    Template
 ) {
     'use strict';
-    var template = _.template( $('#welcome').html() );
+    var template = _.template( Template );
 
     var View = Backbone.View.extend({
         display:'',
@@ -12,18 +15,22 @@ define([ 'backbone',
             'click #cancel': 'cancel'
         },
 
-        ok: function( args ){
-            console.log( 'ok' );
+        ok: function( event ){
+            event.preventDefault();
+            console.log( $( '#ServerURL' ).val() );
+            window.app.navigate( 'chat', {trigger: true} )
         },
 
-        cancel: function( args ){
-            console.log( 'cancel' );
+        cancel: function( event ){
+            event.preventDefault();
+            console.log("cancel")
+            $( '#ServerURL' ).val('');
         },
 
 
-        link: function( args ){
-            window.app.navigate( args.target.attributes['href'].value, {trigger: true}  );
-            args.preventDefault();
+        link: function( event ){
+            event.preventDefault()
+            window.app.navigate( event.target.attributes['href'].value, {trigger: true}  );
         },
 
         initialize: function(){
