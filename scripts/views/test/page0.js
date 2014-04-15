@@ -8,16 +8,18 @@ define([ 'backbone',
     var View = Backbone.View.extend({
         display:'',
         events : {
-            'click': 'click'
+            'click .link': 'link'
         },
 
 
-        click: function( args ){
-            console.log( args );
+        link: function( args ){
+            window.app.navigate( args.target.attributes['href'].value, {trigger: true}  );
+            args.preventDefault();
         },
 
         initialize: function(){
             this.render();
+            this.added = false;
         },
 
         render: function(){
@@ -28,5 +30,5 @@ define([ 'backbone',
 
     });
 
-    return View;
+    return new View();
 });

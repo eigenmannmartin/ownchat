@@ -3,7 +3,7 @@ define([ 'backbone',
     Backbone
 ) {
     'use strict';
-    var template = _.template( $('#page2').html() );
+    var template = _.template( $('#welcome').html() );
 
     var View = Backbone.View.extend({
         display:'',
@@ -19,6 +19,7 @@ define([ 'backbone',
 
         initialize: function(){
             this.render();
+            this.added = false;
         },
 
         render: function(){

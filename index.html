@@ -10,68 +10,53 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="components/jquery/jquery.mobile-1.4.2.min.css"/>
+        <link rel="stylesheet" href="styles/semantic.css"/>
 
 
-        <script type="text/template" id="home">
+        <script type="text/template" id="welcome">
 
-            <div data-role="header">
-                <h1>Backbone.js + jQuery Mobile</h1>
-            </div>
+            <div class="ui one column page grid">
 
-            <div data-role="content">
-                <h3>Application Template for using Backbone.js and jQuery Mobile.</h3>
-                <p>Backbone.js is used for code organization (Models, Views) and "routing".</p>
-                <p>jQuery Mobile is used for its mobile styles and widgets. The routing and navigation capabilities of jQuery Mobile are disbled to let Backbone.js handle these requirements.</p>
-                <p>This is the Home page. It was created dynamically using an underscore.js template.</p>
-                <p>Navigate to:</p>
-                <ul data-role="listview" data-inset="true">
-                    <li><a href="#page1">Page 1</a></li>
-                    <li><a href="#page2">Page 2</a></li>
-                </ul>
-            </div>
+                <div class="center aligned row" >
+                    <div class="column">
+                        <div class="ui">
+                            <h2 class="ui header">
+                              OwnChat
+                            </h2>
+                            <div class="ui divider"></div>
+                        </div>
+                    </div>
+                </div>
 
-        </script>
+                <div class="center aligned row" >
+                    <div class="column">
+                        <div class="ui">
+                            <div class="ui left icon input ">
+                              <input placeholder="Chat Server" type="text">
+                              <i class="cloud icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <script type="text/template" id="page1">
+                <div class="center aligned row" >
+                    <div class="column">
+                        <div class="ui">        
+                            <div class="ui buttons">
+                              <div id="cancel" class="ui button">Cancel</div>
+                              <div class="or"></div>
+                              <div id="save" class="ui blue button">Let&rsquo;s Go</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div data-role="header">
-                <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
-                <h1>Page 1</h1>
-            </div>
-
-            <div data-role="content">
-                <p>This is Page 1. It was created dynamically using an underscore.js template.</p>
-                <p>Navigate to:</p>
-                <ul data-role="listview" data-inset="true">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#page2">Page 2</a></li>
-                </ul>
-            </div>
-
-        </script>
-
-        <script type="text/template" id="page2">
-
-            <div data-role="header">
-                <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
-                <h1>Page 2</h1>
-            </div>
-
-            <div data-role="content">
-                <p>This is Page 2. It was created dynamically using an underscore.js template.</p>
-                <p>Navigate to:</p>
-                <ul data-role="listview" data-inset="true">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#page1">Page 1</a></li>
-                </ul>
             </div>
 
         </script>
     
     </head>
     <body> 
-
     </body>
 
     <script data-main="scripts/main" src="components/requirejs/require.js"></script>
