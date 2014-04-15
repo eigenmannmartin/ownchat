@@ -8,7 +8,16 @@ define([ 'backbone',
     var View = Backbone.View.extend({
         display:'',
         events : {
-            'click .link': 'link'
+            'click #ok': 'ok',
+            'click #cancel': 'cancel'
+        },
+
+        ok: function( args ){
+            console.log( 'ok' );
+        },
+
+        cancel: function( args ){
+            console.log( 'cancel' );
         },
 
 
