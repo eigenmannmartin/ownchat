@@ -23,14 +23,23 @@ define([
         },
 
         initialize: function(){
-            this.render();
             this.added = false;
+            this.chat = false;
+        },
+
+        start: function(){
+            var self = this;
+            Api.getChat( Settings.get( "ServerURL" ) ).complete( function( arg ){
+                self.chat = arg.responseText;
+                self.render();
+            });
+
+            this.render();
         },
 
         render: function(){
-            console.log( Api.getChat( Settings.get( "ServerURL" ) ) );
             this.$el.html( template({
-                content: Settings.get( "ServerURL" )
+                content: this.chat,
             }) );
             this.$el.show();
             return this;

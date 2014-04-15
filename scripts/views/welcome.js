@@ -40,6 +40,10 @@ define([
             this.added = false;
         },
 
+        start: function(){
+            this.render();
+        },
+
         render: function(){
             this.$el.html( template({
                 ServerURL: Settings.get( "ServerURL" )

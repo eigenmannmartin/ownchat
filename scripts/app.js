@@ -37,7 +37,7 @@ define([
     	}
 
     	this.actualPage = page;
-    	this.actualPage.render();
+    	this.actualPage.start();
     	this.actualPage.$el.show();
     	this.main.append( page.$el );
     },
