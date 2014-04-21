@@ -44,7 +44,7 @@ define([
 
     start: function(){
         this.actualPage = false;
-        this.main = $( 'body' );
+        this.main = $( '#container' );
 
         this.models = {
         	settings : Settings

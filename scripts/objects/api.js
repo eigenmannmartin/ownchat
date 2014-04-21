@@ -12,8 +12,7 @@ function(
 			var promise = $.ajax({
 				type: type,
 				data: data,
-				url: uri,
-				cache: false,
+				url: uri
 			});
 			return promise;
 		},
@@ -22,6 +21,7 @@ function(
 			var self = this;
 
 			var promise = $.ajax({
+				dataType: "json",
 				type: 'GET',
 				url: url
 			});

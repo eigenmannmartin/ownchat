@@ -1,13 +1,19 @@
 define([ 
     'backbone',
     'models/settings',
-    'objects/api',
-    'text!templates/chat.tpl'
+    'models/chat',
+    //'objects/api',
+    'text!templates/chat.tpl',
+
+    'views/message'
 ], function(
     Backbone,
     Settings,
-    Api,
-    Template
+    Chat,
+    //Api,
+    Template,
+
+    VMessage
 ) {
     'use strict';
     var template = _.template( Template );
@@ -28,19 +34,27 @@ define([
         },
 
         start: function(){
-            var self = this;
-            Api.getChat( Settings.get( "ServerURL" ) ).complete( function( arg ){
-                self.chat = arg.responseText;
-                self.render();
-            });
+            Chat.url = Settings.get( "ServerURL" );
+            Chat.fetch();
 
+            this.listenTo( Chat, "change", this.render );
             this.render();
         },
 
         render: function(){
-            this.$el.html( template({
-                content: this.chat,
-            }) );
+            var self = this;
+
+            this.$el.html( template() );
+
+            this.messagebox = $( '#message-box' );
+            Chat.each( function( message ){
+                self.messagebox.append( new VMessage({ model: message }).$el );
+            });
+
+            
+
+            
+
             this.$el.show();
             return this;
         },
