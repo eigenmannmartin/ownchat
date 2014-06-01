@@ -24,10 +24,13 @@ define([
 
     welcome: function(){
     	this.changePage( VWelcome );
+        window.$.mobile.changePage( "#welcome" , { reverse: false, changeHash: false } );
     },
 
     chat: function(){
+        console.log('chat');
 		this.changePage( VChat );
+        window.$.mobile.changePage( "#chat" , { reverse: false, changeHash: false } );
     },
 
  
@@ -38,13 +41,10 @@ define([
 
     	this.actualPage = page;
     	this.actualPage.start();
-    	this.actualPage.$el.show();
-    	this.main.append( page.$el );
     },
 
     start: function(){
         this.actualPage = false;
-        this.main = $( '#container' );
 
         this.models = {
         	settings : Settings
@@ -54,6 +54,8 @@ define([
         this.models.settings.loadSettings();
 
     	Backbone.history.start();
+
+        $( 'body' ).show();
     }
 
 	});

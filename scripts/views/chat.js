@@ -2,7 +2,6 @@ define([
     'backbone',
     'models/settings',
     'models/chat',
-    //'objects/api',
     'text!templates/chat.tpl',
 
     'views/message'
@@ -10,23 +9,18 @@ define([
     Backbone,
     Settings,
     Chat,
-    //Api,
     Template,
 
     VMessage
 ) {
     'use strict';
+
     var template = _.template( Template );
 
     var View = Backbone.View.extend({
+        el: $('#chat [role="main"]'),
         display:'',
-        events : {
-            'click #btn_back': 'back'
-        },
-
-        back: function(){
-            window.app.navigate( '',  {trigger: true} )
-        },
+        events : {},
 
         initialize: function(){
             this.added = false;
@@ -44,7 +38,7 @@ define([
         render: function(){
             var self = this;
 
-            this.$el.html( template() );
+            this.$el.show();
 
             this.messagebox = $( '#message-box' );
             Chat.each( function( message ){
@@ -55,7 +49,7 @@ define([
 
             
 
-            this.$el.show();
+            this.$el.html(template());
             return this;
         },
 

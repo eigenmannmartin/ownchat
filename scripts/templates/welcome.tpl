@@ -3,17 +3,6 @@
                 <div class="center aligned row" >
                     <div class="column">
                         <div class="ui">
-                            <h2 class="ui header">
-                              OwnChat
-                            </h2>
-                            <div class="ui divider"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="center aligned row" >
-                    <div class="column">
-                        <div class="ui">
                             <div class="ui left icon input ">
                               <input placeholder="Chat Server" type="text" id="ServerURL" <% if( ServerURL ){ %> value="<%= ServerURL %>" <%} %>>
                               <i class="cloud icon"></i>

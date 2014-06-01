@@ -1,22 +1,14 @@
 require.config({
     paths : {
         backbone : '../components/backbone/backbone',
-        //backbone_shortcut: '../components/backbone/backbone-shortcuts',
-        //backbone_autocomplete: '../components/backbone/backbone-autocomplete',
         underscore : '../components/underscore/underscore',
 
-        jquery : '../components/jquery/jquery',
+        jquery : '../components/jquery/jquery-2.1.1',
         jqm: '../components/jquery/jquery.mobile-1.4.2.min',
 
         text : '../components/requirejs/text',
-
-        logger : 'objects/logger',
-
     },
     shim : {
-        jquery : {
-            exports : '$'
-        },
         underscore : {
             exports : '_'
         },
@@ -24,6 +16,7 @@ require.config({
             deps : ['underscore'],
             exports : 'Backbone'
         },
+
         logger : {
             exports : 'L'
         }
@@ -32,25 +25,34 @@ require.config({
 
 require([
     'backbone',
-    'app',
-    'jquery',
-    'jqm'
+    'jquery'
 ],
 function (
-    Backbone,
-    App
+    Backbone
 ){
     'use strict';
+    
+    $( document ).on( "mobileinit",
+        // Set up the "mobileinit" handler before requiring jQuery Mobile's module
+        function () {
+            // Prevents all anchor click handling including the addition of active button state and alternate link bluring.
+            $.mobile.linkBindingEnabled = false;
+            // Disabling this will prevent jQuery Mobile from handling hash changes
+            $.mobile.hashListeningEnabled = false;
+        }
+    )
 
-    var Main = Backbone.Model.extend({
-        initialize: function(){
-            //console.log("hi!");
-            //console.log( window.localStorage.getItem( 'config__server_name' ) );
-            window.app = App;
-            App.start();
-        },
 
+    require( [ 'app', 'jqm' ], function (App) {
 
+        var Main = Backbone.Model.extend({
+            initialize: function(){
+                window.app = App;
+                App.start();
+            },
+        });
+        var main = new Main();
     });
-    var main = new Main();
+
+
 });

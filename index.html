@@ -13,12 +13,38 @@
 
         <link rel="stylesheet" href="styles/semantic.css"/>
         <link rel="stylesheet" href="styles/custom.css"/>
+        <link rel="stylesheet" href="components/jquery/jquery.mobile-1.4.2.min.css"/>
    
     </head>
-    <body>
+    <body style="display:none;" >
 
-    <div id="header"></div>
-    <div id="container"></div>
+        <div data-role="page" id="welcome">
+
+            <div data-role="header">
+                <h1>OwnChat</h1>
+            </div><!-- /header -->
+
+            <div role="main" class="ui-content">
+            </div><!-- /content -->
+
+            <div data-role="footer" data-position="fixed">
+                <h4></h4>
+            </div><!-- /footer -->
+        </div><!-- /page -->
+
+        <!-- Start of second page -->
+        <div data-role="page" id="chat">
+
+            <div data-role="header">
+                <a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
+                <h1>Chat</h1>
+            </div><!-- /header -->
+
+            <div role="main" class="ui-content">
+            </div><!-- /content -->
+
+        </div><!-- /page -->
+
     </body>
 
     <script data-main="scripts/main" src="components/requirejs/require.js"></script>

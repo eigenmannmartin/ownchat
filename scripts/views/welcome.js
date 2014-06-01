@@ -11,6 +11,7 @@ define([
     var template = _.template( Template );
 
     var View = Backbone.View.extend({
+        el: $('#welcome [role="main"]'),
         display:'',
         events : {
             'click #ok': 'ok',
