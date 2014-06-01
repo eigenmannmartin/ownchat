@@ -17,13 +17,26 @@ function(
 			return promise;
 		},
 
-		getChat: function( url ){
+		getChat: function( url, SessionID ){
 			var self = this;
 
 			var promise = $.ajax({
+				crossDomain: true,
 				dataType: "json",
 				type: 'GET',
-				url: url
+				url: url + "?SessionID=" + SessionID
+			});
+			return promise;
+		},
+
+		submitMsg: function( url, msg, SessionID ){
+			var self = this;
+
+			var promise = $.ajax({
+				crossDomain: true,
+				dataType: "json",
+				type: 'GET',
+				url: url + '/?SessionID=' + SessionID + '&action=submit&content=' + msg
 			});
 			return promise;
 		},

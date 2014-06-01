@@ -19,9 +19,11 @@ define([
         render: function(){
             //console.log( this.model.get( 'clientID' ) )
             //console.log( Chat['meta']['clientID'])
+            //console.log( this.model.get( 'clientID' ) )
             this.$el.html( template({
                 message: this.model,
-                self: ( this.model.get( 'clientID' ) === Chat['meta']['clientID'] )
+                me: ( this.model.get( 'clientID' ) === Chat['meta']['clientID'] ),
+                clientID: Chat['meta']['clientID']
             }) );
             this.$el.show();
             return this;

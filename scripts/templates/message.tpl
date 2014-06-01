@@ -1,6 +1,6 @@
 
 <p class="">
-	<% if( self ){ %>
+	<% if( me ){ %>
 	<div class="ui green message">
 	<% } else { %>
 	<div class="ui blue message">

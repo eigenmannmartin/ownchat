@@ -21,7 +21,15 @@ define([
         el: $('#chat [role="main"]'),
         display:'',
         events : {
-            'click #back': 'back'
+            'click #send': 'send'
+        },
+
+        send: function( event ){
+            Chat.submitMsg( $( '#message-input' ).val() );
+
+            $( '#message-input' ).val("");
+
+            event.preventDefault();
         },
 
         initialize: function(){
@@ -31,6 +39,7 @@ define([
 
         start: function(){
             Chat.url = Settings.get( "ServerURL" );
+            Chat.SessionID = Settings.get( "SessionID" );
             Chat.fetch();
 
             this.listenTo( Chat, "change", this.render );
@@ -39,19 +48,15 @@ define([
 
         render: function(){
             var self = this;
-
-            this.$el.show();
+            this.$el.html(template());
 
             this.messagebox = $( '#message-box' );
             Chat.each( function( message ){
+                console.log( message )
                 self.messagebox.append( new VMessage({ model: message }).$el );
             });
-
-            
-
-            
-
-            this.$el.html(template());
+ 
+            this.$el.show();
             return this;
         },
 

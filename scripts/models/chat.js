@@ -1,10 +1,12 @@
 define([
 	'backbone',
-	'objects/api'
+	'objects/api',
+	'models/settings'
 ],
 function(
 	Backbone,
-	Api
+	Api,
+	Settings
 ){
 	'use strict';
 
@@ -16,11 +18,30 @@ function(
 
 		fetch: function(){
 			var self = this;
-			Api.getChat( this.url ).complete( function( arg ){
+			Api.getChat( this.url, this.SessionID ).complete( function( arg ){
+				self.reset();
+
                 self.meta = arg.responseJSON['meta'];
+                
+                Settings.set( { "SessionID": self.meta[ 'clientID' ] } );
+                Settings.saveSettings();
+
                 self.add( arg.responseJSON['chat'] );
                 self.trigger( "change" );
             });
+
+            setInterval(function(){
+				self.fetch();	
+			}, 3000 );
+		},
+
+		submitMsg: function( msg ){
+			var self = this;
+			Api.submitMsg( this.url, msg, this.SessionID ).complete( function( arg ){
+				self.reset();
+                self.fetch();
+            });
+
 		}
 	});
 
