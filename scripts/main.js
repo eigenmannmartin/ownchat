@@ -1,6 +1,5 @@
 require.config({
     paths : {
-        // better try this: http://stackoverflow.com/questions/13331484/requirejs-shim-want-to-register-backbone-plugins-directly-into-core-backbone
         backbone : '../components/backbone/backbone',
         //backbone_shortcut: '../components/backbone/backbone-shortcuts',
         //backbone_autocomplete: '../components/backbone/backbone-autocomplete',
@@ -35,6 +34,7 @@ require([
     'backbone',
     'app',
     'jquery',
+    'jqm'
 ],
 function (
     Backbone,
