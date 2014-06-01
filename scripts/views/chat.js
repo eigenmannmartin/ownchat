@@ -20,7 +20,9 @@ define([
     var View = Backbone.View.extend({
         el: $('#chat [role="main"]'),
         display:'',
-        events : {},
+        events : {
+            'click #back': 'back'
+        },
 
         initialize: function(){
             this.added = false;

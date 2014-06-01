@@ -21,7 +21,6 @@ define([
         "chat": "chat" 
     },
 
-
     welcome: function(){
         console.log('welcome');
     	this.changePage( VWelcome );
