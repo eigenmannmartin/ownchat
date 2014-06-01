@@ -23,6 +23,7 @@ define([
 
 
     welcome: function(){
+        console.log('welcome');
     	this.changePage( VWelcome );
         window.$.mobile.changePage( "#welcome" , { reverse: false, changeHash: false } );
     },
@@ -41,6 +42,7 @@ define([
 
     	this.actualPage = page;
     	this.actualPage.start();
+        this.actualPage.$el.show();
     },
 
     start: function(){
