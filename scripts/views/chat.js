@@ -42,12 +42,16 @@ define([
             this.render();
         },
 
+        stop: function(){
+            this.stopListening();
+            Chat.stop();
+        },
+
         update: function(){
             var self = this;
             this.messagebox = $( '#message-box' );
             this.messagebox.empty();
             Chat.each( function( message ){
-                console.log( message )
                 self.messagebox.append( new VMessage({ model: message }).$el );
             });
         },

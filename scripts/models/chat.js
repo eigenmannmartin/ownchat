@@ -32,13 +32,19 @@ function(
                 Settings.set( { "SessionID": self.meta[ 'clientID' ] } );
                 Settings.saveSettings();
 
-                self.add( arg.responseJSON['chat'] );
-                self.trigger( "change" );
+                if( arg.responseJSON['chat'].length > 0 ){
+                	self.add( arg.responseJSON['chat'] );
+                	self.trigger( "change" );
+            	}
             });
 
-            setInterval(function(){
+            this.timer = setInterval(function(){
 				self.fetch();	
 			}, 3000 );
+		},
+
+		stop: function(){
+			clearInterval( this.timer );
 		},
 
 		submitMsg: function( msg ){

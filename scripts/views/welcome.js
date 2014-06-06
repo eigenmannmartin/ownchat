@@ -44,6 +44,10 @@ define([
         start: function(){
             this.render();
         },
+        
+        stop: function(){
+
+        },
 
         render: function(){
             this.$el.html( template({
