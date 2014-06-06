@@ -26,14 +26,11 @@ define([
 
         send: function( event ){
             Chat.submitMsg( $( '#message-input' ).val() );
-
             $( '#message-input' ).val("");
-
             event.preventDefault();
         },
 
         initialize: function(){
-            this.added = false;
             this.chat = false;
         },
 
@@ -41,22 +38,24 @@ define([
             Chat.url = Settings.get( "ServerURL" );
             Chat.SessionID = Settings.get( "SessionID" );
             Chat.fetch();
-
-            this.listenTo( Chat, "change", this.render );
+            this.listenTo( Chat, "change", this.update );
             this.render();
+        },
+
+        update: function(){
+            var self = this;
+            this.messagebox = $( '#message-box' );
+            this.messagebox.empty();
+            Chat.each( function( message ){
+                console.log( message )
+                self.messagebox.append( new VMessage({ model: message }).$el );
+            });
         },
 
         render: function(){
             var self = this;
             this.$el.html(template());
-
-            this.messagebox = $( '#message-box' );
-            Chat.each( function( message ){
-                console.log( message )
-                self.messagebox.append( new VMessage({ model: message }).$el );
-            });
- 
-            this.$el.show();
+            this.update();
             return this;
         },
 

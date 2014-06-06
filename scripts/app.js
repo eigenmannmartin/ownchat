@@ -18,6 +18,7 @@ define([
 	var Router = Backbone.Router.extend({
 	routes:{
         "": "welcome",
+        "welcome": "welcome",
         "chat": "chat" 
     },
 
@@ -35,27 +36,18 @@ define([
 
  
     changePage:function ( page ) {
-    	if( this.actualPage ){
-    		this.actualPage.$el.hide();
-    	}
-
     	this.actualPage = page;
     	this.actualPage.start();
-        this.actualPage.$el.show();
     },
 
     start: function(){
         this.actualPage = false;
-
         this.models = {
         	settings : Settings
         }   
 
-
         this.models.settings.loadSettings();
-
     	Backbone.history.start();
-
         $( 'body' ).show();
     }
 

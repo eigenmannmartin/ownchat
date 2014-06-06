@@ -18,8 +18,14 @@ function(
 
 		fetch: function(){
 			var self = this;
-			Api.getChat( this.url, this.SessionID ).complete( function( arg ){
-				self.reset();
+
+			if( this.length < 1 ){
+				this.latestID = 0;
+			} else {
+				this.latestID = this.max( function( model ){ return model.get( "id" ) }).get( "id" );
+			}
+
+			Api.getChat( this.url, this.SessionID, this.latestID ).complete( function( arg ){
 
                 self.meta = arg.responseJSON['meta'];
                 
@@ -38,8 +44,8 @@ function(
 		submitMsg: function( msg ){
 			var self = this;
 			Api.submitMsg( this.url, msg, this.SessionID ).complete( function( arg ){
-				self.reset();
-                self.fetch();
+				self.add( arg.responseJSON );
+                self.trigger( "change" );
             });
 
 		}

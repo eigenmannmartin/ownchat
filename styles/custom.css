@@ -11,6 +11,9 @@ html, body {
 
 	padding: 5px;
 	width: 100%;
-	background-color: black;
     height: 50px;
+}
+
+#send {
+	text-decoration: none;
 }

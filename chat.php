@@ -10,6 +10,10 @@
 		session_id($_GET["SessionID"]);
 	}
 	session_start();
+
+	if( !isset($_SESSION['clientName']) ){
+		$_SESSION['clientName'] = "";
+	}
 	
 	
 
@@ -23,6 +27,8 @@
         if( isset( $_GET["content"] ) && isset( $_GET["action"] ) && $_GET["action"] == 'submit' ){
 			$sql = "INSERT INTO chat ( clientID, clientName, content ) VALUES ( '".session_id()."', '".SQLite3::escapeString($_SESSION['clientName'])."', '".SQLite3::escapeString($_GET['content'])."' );";
 			$statement = $db->exec( $sql );
+			print json_encode( $db->querySingle( "SELECT * FROM chat WHERE ID=".$db->lastInsertRowID(), true ) );
+			exit;
         }
         
         if( isset( $_GET["content"] ) && isset( $_GET["action"] ) && $_GET["action"] == 'set.clientName' ){
@@ -41,8 +47,13 @@
 		'chat' => array()
 	);
 	
-	// get full chat history
-	$query = $db->query( 'SELECT * from chat' );
+
+	if( isset( $_GET["id"] ) && preg_match('/^[0-9]+$/', $_GET["id"] ) ){
+		$query = $db->query( 'SELECT * from chat WHERE id >'.$_GET["id"] );
+	} else {
+		// get full chat history
+		$query = $db->query( 'SELECT * from chat' );
+	}
 	while ( $message = $query->fetchArray( SQLITE3_ASSOC ) ){
 	    array_push( $result['chat'], $message );
 	}

@@ -17,14 +17,14 @@ function(
 			return promise;
 		},
 
-		getChat: function( url, SessionID ){
+		getChat: function( url, SessionID, id ){
 			var self = this;
 
 			var promise = $.ajax({
 				crossDomain: true,
 				dataType: "json",
 				type: 'GET',
-				url: url + "?SessionID=" + SessionID
+				url: url + "?SessionID=" + SessionID + "&id=" + id
 			});
 			return promise;
 		},
