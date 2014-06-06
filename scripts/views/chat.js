@@ -37,7 +37,7 @@ define([
         start: function(){
             Chat.url = Settings.get( "ServerURL" );
             Chat.SessionID = Settings.get( "SessionID" );
-            Chat.fetch();
+            Chat.start();
             this.listenTo( Chat, "change", this.update );
             this.render();
         },

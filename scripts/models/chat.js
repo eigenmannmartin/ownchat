@@ -26,6 +26,7 @@ function(
 			}
 
 			Api.getChat( this.url, this.SessionID, this.latestID ).complete( function( arg ){
+				console.log( arg.responseJSON );
 
                 self.meta = arg.responseJSON['meta'];
                 
@@ -37,8 +38,12 @@ function(
                 	self.trigger( "change" );
             	}
             });
+		},
 
-            this.timer = setInterval(function(){
+		start: function(){
+			var self = this;
+			self.fetch();
+			this.timer = setInterval(function(){
 				self.fetch();	
 			}, 3000 );
 		},
