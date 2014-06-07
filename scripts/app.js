@@ -3,7 +3,8 @@ define([
 	'models/settings',
 
 	'views/welcome',
-	'views/chat'
+	'views/chat',
+    'views/settings'
 
 ], function (
 	Backbone,
@@ -11,7 +12,8 @@ define([
 	Settings,
 
 	VWelcome,
-	VChat
+	VChat,
+    VSettings
 ){
 	'use strict';
 
@@ -19,7 +21,8 @@ define([
 	routes:{
         "": "welcome",
         "welcome": "welcome",
-        "chat": "chat" 
+        "chat": "chat",
+        "settings": "settings"
     },
 
     welcome: function(){
@@ -32,6 +35,12 @@ define([
         console.log('chat');
 		this.changePage( VChat );
         window.$.mobile.changePage( "#chat" , { reverse: false, changeHash: false } );
+    },
+
+    settings: function(){
+        console.log( 'settings' );
+        this.changePage( VSettings );
+        window.$.mobile.changePage( "#settings" , { reverse: false, changeHash: false } );
     },
 
  

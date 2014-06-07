@@ -54,6 +54,7 @@ define([
             Chat.each( function( message ){
                 self.messagebox.append( new VMessage({ model: message }).$el );
             });
+            $( "html, body" ).animate({ scrollTop: $(document).height()+200 }, "slow");
         },
 
         render: function(){
