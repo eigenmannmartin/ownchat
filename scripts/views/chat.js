@@ -45,6 +45,7 @@ define([
         stop: function(){
             this.stopListening();
             Chat.stop();
+            this.messagebox.empty();
         },
 
         update: function(){
@@ -54,7 +55,7 @@ define([
             Chat.each( function( message ){
                 self.messagebox.append( new VMessage({ model: message }).$el );
             });
-            $( "html, body" ).animate({ scrollTop: $(document).height()+200 }, "slow");
+            $( "html, body" ).animate({ scrollTop: $(document).height()+400 }, "slow");
         },
 
         render: function(){

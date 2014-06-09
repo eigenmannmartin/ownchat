@@ -15,7 +15,9 @@ define([
     var View = Backbone.View.extend({
         el: $('#settings [role="main"]'),
         display:'',
-        events : {},
+        events : {
+            'click #save': 'save'
+        },
 
         
 
@@ -30,9 +32,15 @@ define([
         stop: function(){
         },
 
+        save: function(){
+            Settings.set({ 'UserName': $('#username').val() });
+            Settings.saveSettings();
+        },
+
         render: function(){
-            var self = this;
-            this.$el.html(template());
+            this.$el.html(template({
+                username: Settings.get("UserName")
+            }));
             return this;
         },
 

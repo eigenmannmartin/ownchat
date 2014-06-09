@@ -41,6 +41,18 @@ function(
 			return promise;
 		},
 
+		setUsername: function( url, SessionID, username ){
+			var self = this;
+
+			var promise = $.ajax({
+				crossDomain: true,
+				dataType: "json",
+				type: 'GET',
+				url: url + '/?SessionID=' + SessionID + '&action=set.clientName&content=' + username
+			});
+			return promise;
+		},
+
 
 	});
 

@@ -5,14 +5,14 @@
 	<% } else { %>
 	<div class="ui blue message">
 	<% } %>
+		<h4>
+			<%= message.get( 'clientName' ) %> wrote:
+		</h4>
 		<p>
 			<%= message.get( 'content' ) %>	
 		</p>
-		<div>
-			<%= message.get( 'clientName' ) %>	
-		</div>
-		<div>
+		<h6>
 			<%= message.get( 'createDate' ) %>
-		</div>
+		</h6>
 	</div>
 </p>
