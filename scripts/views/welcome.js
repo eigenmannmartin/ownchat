@@ -10,8 +10,8 @@ define([
     'use strict';
     var template = _.template( Template );
 
-    var View = Backbone.View.extend({
-        el: $('#welcome [role="main"]'),
+    var Main = Backbone.View.extend({
+        el: $('#welcome [data-role="main"]'),
         display:'',
         events : {
             'click #ok': 'ok',
@@ -28,12 +28,6 @@ define([
         cancel: function( event ){
             event.preventDefault();
             $( '#ServerURL' ).val('');
-        },
-
-
-        link: function( event ){
-            event.preventDefault()
-            window.app.navigate( event.target.attributes['href'].value, {trigger: true}  );
         },
 
         initialize: function(){
@@ -58,5 +52,7 @@ define([
 
     });
 
-    return new View();
+    return { 
+        'main' : new Main()
+    };
 });

@@ -12,8 +12,8 @@ define([
 
     var template = _.template( Template );
 
-    var View = Backbone.View.extend({
-        el: $('#settings [role="main"]'),
+    var Main = Backbone.View.extend({
+        el: $('#settings [data-role="main"]'),
         display:'',
         events : {
             'click #save': 'save'
@@ -46,5 +46,21 @@ define([
 
     });
 
-    return new View();
+    var Head = Backbone.View.extend({
+        el: $('#settings [data-role="header"]'),
+        events: {
+            'click #back': 'back',
+        },
+
+        back: function( event ){
+            event.preventDefault();
+            window.app.navigate( 'chat', {trigger: true} )
+        }
+
+    });
+
+    return { 
+        'header': new Head(),
+        'main' : new Main()
+    };
 });

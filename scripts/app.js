@@ -46,10 +46,10 @@ define([
  
     changePage:function ( page ) {
         if( this.actualPage ){
-            this.actualPage.stop();
+            this.actualPage['main'].stop();
         }
     	this.actualPage = page;
-    	this.actualPage.start();
+    	this.actualPage['main'].start();
     },
 
     start: function(){
