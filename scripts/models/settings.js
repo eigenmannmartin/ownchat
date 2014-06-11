@@ -16,16 +16,19 @@ function(
 		},
 
 		saveSettings: function(){
-			if( this.get( "ServerURL" ) !== window.localStorage.setItem( "ServerURL" , this.get( 'ServerURL' )) ){	
+			if( this.get( "ServerURL" ) !== window.localStorage.getItem( "ServerURL") ){	
 	    		window.localStorage.setItem( "SessionID" , "" );
 	    		window.localStorage.setItem( "UserName" , "" );				
+			}
+
+			if( this.get( "UserName" ) !== window.localStorage.getItem( "UserName") ){	
+	    		Api.setUsername( this.get( "ServerURL" ), this.get( "SessionID" ), this.get( "UserName" ) );		
 			}
 
 	    	window.localStorage.setItem( "ServerURL" , this.get( 'ServerURL' ));
 	    	window.localStorage.setItem( "SessionID" , this.get( 'SessionID' ));
 	    	window.localStorage.setItem( "UserName" , this.get( 'UserName' ));
 
-	    	Api.setUsername( this.get( "ServerURL" ), this.get( "SessionID" ), this.get( "UserName" ) );
 	    },
 
 	    loadSettings: function(){
